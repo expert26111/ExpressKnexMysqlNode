@@ -42,21 +42,21 @@ var cleanUp = function(params){
 
 describe('API Routes', function() {
 
-    before(function(done) {
-       knex.migrate.rollback()
-       .then(function() {
-           knex.migrate.latest()
-           .then(function() {
-                return knex.seed.run()
-                .then(function() {
-                    done();
-                });
-           });
-        });
-
-        console.log('see.. this function is run EACH time')
-        //done();
-    });
+    // before(function(done) {
+    //    knex.migrate.rollback()
+    //    .then(function() {
+    //        knex.migrate.latest()
+    //        .then(function() {
+    //             return knex.seed.run()
+    //             .then(function() {
+    //                 done();
+    //             });
+    //        });
+    //     });
+    //
+    //     console.log('see.. this function is run EACH time')
+    //     //done();
+    // });
 
     describe('GET /api/v1/shows/:id', function() {
         it('should return simple response', function(done) {
@@ -82,12 +82,12 @@ describe('API Routes', function() {
     });
 
 
-    afterEach(function(done) {
-        knex.migrate.rollback()
-        .then(function() {
-            done();
-        });
-    });
+    // afterEach(function(done) {
+    //     knex.migrate.rollback()
+    //     .then(function() {
+    //         done();
+    //     });
+    // });
 
     // describe('Get all shows', function() {
     //     it('first route returns hello world', function(done) {
