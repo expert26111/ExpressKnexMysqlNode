@@ -26,25 +26,6 @@ chai.use(chaiHttp);
 //     })
                         // );
 describe('API Routes', function() {
-
-   before(function(done) {
-     knex.migrate.rollback()
-         .then(function() {
-             knex.migrate.latest()
-              .then(function() {
-                return  knex.seed.run().then(function(){
-                      done();
-                  })
-               });
-      });
-      //  p.then(function(){
-      //      done();
-       //     console.log('see.. this function is run EACH time');
-      //  });
-
-        // console.log('see.. this function is run EACH time');
-   });
-
     describe('GET /api/v1/shows/:id', function() {
         it('should return simple response', function(done) {
             chai.request(server)
