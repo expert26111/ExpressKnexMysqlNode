@@ -14,34 +14,60 @@ chai.use(chaiHttp);
 //     knex.migrate.latest([environment])
 // }
 
+var cleanUp = function(params){
+    // return
+    // new Promise(function(fulfill,reject){
+    //     doSomething()
+    //     .then(doAnotherThing())
+    //     .then(doOneLastThing())
+    //     .then(
+    //         function(result){
+    //             fulfill(result);
+    //         },
+    //         function(err){
+    //             reject(err);
+    //         })
+    //
+    // });
+
+    return Promise.all([
+        knex.migrate.rollback()
+    ]).then(function(){
+        return Promise.all([
+        knex.migrate.latest()
+        ])
+    })
+
+};
+
 describe('API Routes', function() {
 
-    before(function(done) {
-       knex.migrate.latest()
-       .then(function() {
-           knex.migrate.rollback()
-           .then(function() {
-                return knex.seed.run()
-                .then(function() {
-                    done();
-                });
-           });
-        });
-
-        console.log('see.. this function is run EACH time')
-        done();
-    });
+    // before(function(done) {
+    //    knex.migrate.rollback()
+    //    .then(function() {
+    //        knex.migrate.latest()
+    //        .then(function() {
+    //             return knex.seed.run()
+    //             .then(function() {
+    //                 done();
+    //             });
+    //        });
+    //     });
+    //
+    //     console.log('see.. this function is run EACH time')
+    //     //done();
+    // });
 
     describe('GET /api/v1/shows/:id', function() {
-        it('should return a single show', function(done) {
+        it('should return simple response', function(done) {
             chai.request(server)
             .get('/api')
             .end(function(err, res) {
                 //res.should.have.status(200);
                 res.should.be.json; // jshint ignore:line
                 // res.body.should.be.a('object');
-                // res.body.should.have.property('name');
-                // res.body.name.should.equal('Suits');
+                 res.body.should.have.property('message');
+                 res.body.message.should.equal('Hello World');
                 // res.body.should.have.property('channel');
                 // res.body.channel.should.equal('USA Network');
                 // res.body.should.have.property('genre');
@@ -56,12 +82,12 @@ describe('API Routes', function() {
     });
 
 
-    afterEach(function(done) {
-        knex.migrate.rollback()
-        .then(function() {
-            done();
-        });
-    });
+    // afterEach(function(done) {
+    //     knex.migrate.rollback()
+    //     .then(function() {
+    //         done();
+    //     });
+    // });
 
     // describe('Get all shows', function() {
     //     it('first route returns hello world', function(done) {
