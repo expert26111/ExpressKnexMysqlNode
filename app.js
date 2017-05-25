@@ -374,9 +374,9 @@ router.post("/cityInputByBookAuthor/:bookAuthor",function(req,res,next){
 router.post("/bookPost", function(req,res,next){
 //console.log('The body is ',req.body);
    // var title = req.body.;
-    knex('book').insert({title: req.body.title, author:req.body.author})
-    .then(function(){
-        res.json("Book is posted !!!");
+    knex('books').returning(['number']).insert({title: req.body.title, author:req.body.author})
+    .then(function(data){
+        res.status(200).json({message : "Book is posted !!!", id : data});
     })
     .catch(function(error){
         console.error(error);
