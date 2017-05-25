@@ -107,98 +107,98 @@ router.get("/",function(req,res,next){
 router.get("/book/:id",function(req,res,next){
 
     knex('book').where('number', req.params.id).select()
-    .then(book => {
+    .then(function(book) {
         //console.log(book);
         res.status(200).json({"book" : book});
     })
-    .catch(error => {
+    .catch(function(error) {
        console.error('error: ',error);
     });
 });
 
-router.get("/cities/:bookid",function(req,res,next){
-    knex('city').where('number', req.params.bookid).select()
-    .then(city => {
-        //console.log(book);
-        res.status(200).json({"cities" : city});
-    })
-    .catch(error => {
-        console.error('error: ',error);
-    });
-});
-
-
-
-router.get("/books/:cityName",function(req,res,next){
-
-    var subquery = knex('city').where({
-        city: req.params.cityName
-    }).select('number');
-
-    console.log("The subquery result ",subquery);
-
-     knex.select('*').from('book')
-    .whereIn('number', subquery)
-    .then(books => {
-        console.log("The books are " ,books);
-        res.status(200).json({"books" : books});
-    })
-    .catch(error => {
-        console.error('error: ',error);
-        return  res.json({
-            errors: ['Could not get books by city name']
-        });
-    });
-});
-
-
-router.get("/city/:bookTitle",function(req,res,next){
-    var subquery = knex('book').where({
-        title: req.params.bookTitle
-    }).select('number');
-
-     knex.select('*').from('city')
-    .whereIn('number', subquery)
-    .then(cities => {
-        // console.log("The cities are " ,cities);
-        res.status(200).json({"cities" : cities});
-    })
-    .catch(error => {
-        console.error('error: ',error);
-       return res.json({
-            errors: ['Could not get cities by book title']
-    });
-});
-});
-
-router.get("/allInfo/:author",function(req,res,next){
-
-    knex('book').select(['book.title', 'city.city', 'city.lat', 'city.longt'])
-    .innerJoin('city', 'city.number', 'book.number')
-    .then(books => {
-        res.status(200).json({"books" :  books});
-    })
-    .catch(error => {
-        console.error('error: ',error);
-        return res.json({
-            errors: ['Could not get cities by book title']
-        });
-   });
-});
-
-router.get("/rangeBooks/:range/:range2",function(req,res,next){
-
-    knex('book').whereBetween('number', [req.params.range, req.params.range2])
-    .then(books => {
-        res.status(200).json({"books" :  books});
-    })
-    .catch(error => {
-        console.error('error: ',error);
-        return res.json({
-            errors: ['Could not get cities by book title']
-        });
-    });
-});
+// router.get("/cities/:bookid",function(req,res,next){
+//     knex('city').where('number', req.params.bookid).select()
+//     .then(city => {
+//         //console.log(book);
+//         res.status(200).json({"cities" : city});
+//     })
+//     .catch(error => {
+//         console.error('error: ',error);
+//     });
+// });
+//
+//
+//
+// router.get("/books/:cityName",function(req,res,next){
+//
+//     var subquery = knex('city').where({
+//         city: req.params.cityName
+//     }).select('number');
+//
+//     console.log("The subquery result ",subquery);
+//
+//      knex.select('*').from('book')
+//     .whereIn('number', subquery)
+//     .then(books => {
+//         console.log("The books are " ,books);
+//         res.status(200).json({"books" : books});
+//     })
+//     .catch(error => {
+//         console.error('error: ',error);
+//         return  res.json({
+//             errors: ['Could not get books by city name']
+//         });
+//     });
+// });
+//
+//
+// router.get("/city/:bookTitle",function(req,res,next){
+//     var subquery = knex('book').where({
+//         title: req.params.bookTitle
+//     }).select('number');
+//
+//      knex.select('*').from('city')
+//     .whereIn('number', subquery)
+//     .then(cities => {
+//         // console.log("The cities are " ,cities);
+//         res.status(200).json({"cities" : cities});
+//     })
+//     .catch(error => {
+//         console.error('error: ',error);
+//        return res.json({
+//             errors: ['Could not get cities by book title']
+//     });
+// });
+// });
+//
+// router.get("/allInfo/:author",function(req,res,next){
+//
+//     knex('book').select(['book.title', 'city.city', 'city.lat', 'city.longt'])
+//     .innerJoin('city', 'city.number', 'book.number')
+//     .then(books => {
+//         res.status(200).json({"books" :  books});
+//     })
+//     .catch(error => {
+//         console.error('error: ',error);
+//         return res.json({
+//             errors: ['Could not get cities by book title']
+//         });
+//    });
+// });
+//
+// router.get("/rangeBooks/:range/:range2",function(req,res,next){
+//
+//     knex('book').whereBetween('number', [req.params.range, req.params.range2])
+//     .then(books => {
+//         res.status(200).json({"books" :  books});
+//     })
+//     .catch(error => {
+//         console.error('error: ',error);
+//         return res.json({
+//             errors: ['Could not get cities by book title']
+//         });
+//     });
+// });
 
 
 router.put("/bookUpdate/:bookTitle",function(req,res,next){
@@ -214,162 +214,162 @@ router.put("/bookUpdate/:bookTitle",function(req,res,next){
     });
 
 });
-
-router.put("/citiesUpdate/:bookTitle/:cityName",function(req,res,next){
-
-     knex.select('number')
-    .from('book')
-    .where({title: req.params.bookTitle})
-    .then(function(rows){
-        return _.map(rows,'number')
-    })
-    .then(function(numbers){
-        numbers.map(num => {
-            // return knex.update({city:req.param.cityName})
-            return  knex('city')
-            .where({number: num})
-            .update({city: req.params.cityName})
-             .then(function(){
-                res.send("Successfully updated City!!!Bravo Joji!!!!")
-            })
-            .catch(function(error){
-                console.error(error);
-            })
-        });
-
-    })
-    .catch(function(error){
-        console.error(error);
-        res.send(err);
-    });
-
-});
-
-router.delete("/citiesDelete/:bookAuthor",function(req,res,next){
-     knex.select('number')
-    .from('book')
-    .where({author: req.params.bookAuthor})
-     .then(function(rows){
-         return _.map(rows,'number')
-         // _.pluck(rows, 'name');
-     })
-    .then(function(rows){
-       // res.json("Book's Author Updated!!!");
-         console.log('The rows are ',rows);
-         rows.map(row => {
-          //   console.log("The num is ",row);
-             return knex('city').where({number:row}).del()
-             .catch(function(error){
-                 console.error(error);
-             })
-         });
-         res.send("Successfully deleted!!!Bravo Joji!!!!")
-    })
-    .catch(function(error){
-        console.error(error);
-        res.send(err);
-    });
-
-});
-
-router.post("/bookInput/:bookAuthor/:cityName",function(req,res,next){
-
-    knex.select('number')
-    .from('book')
-    .where({author: req.params.bookAuthor})
-    .andWhere('number' , '<' , 1000)
-    .then(function(rows){
-        return _.map(rows,'number')
-        // _.pluck(rows, 'name');
-    })
-    .then(function(numbers){
-        // return knex.insert({number: numbers}).into('city')
-        //knex.map(function(number){})
-        //console.log("The numbers ",numbers);
-        numbers.map(num => {
-            console.log("The num is ",num);
-            return knex.insert({number:num,city:req.params.cityName},'id').into('city')
-            .catch(function(error){
-                console.error(error);
-            })
-        });
-    })
-    .then(function(id){
-        console.log('Inserted ids ' + id);
-        res.send("Successfully inserted!!!Bravo Joji!!!!")
-    })
-    //})
-    .catch(function(error){
-        console.error(error);
-    });
-
-});
-
-router.post("/cityInputByBookTitle/:bookTitle",function(req,res,next){
-
-    knex.select('number')
-    .from('book')
-    .where({title: req.params.bookTitle})
-    .then(function(rows){
-        return _.map(rows,'number')
-        // _.pluck(rows, 'name');
-    })
-    .then(function(numbers){
-        // return knex.insert({number: numbers}).into('city')
-        //knex.map(function(number){})
-        //console.log("The numbers ",numbers);
-        numbers.map(num => {
-           // console.log("The num is ",num);
-            return knex.insert({number:num,city:req.body.city,lat:req.body.lat,longt:
-            req.body.longt},'id').into('city')
-            .catch(function(error){
-                console.error(error);
-            })
-        });
-    })
-    .then(function(id){
-        console.log('Inserted ids ' + id);
-        res.send("Successfully inserted City!!!Bravo Joji!!!!")
-    })
-    //})
-    .catch(function(error){
-        console.error(error);
-    });
-
-});
-
-router.post("/cityInputByBookAuthor/:bookAuthor",function(req,res,next){
-
-    knex.select('number')
-    .from('book')
-    .where({author: req.params.bookAuthor})
-    .then(function(rows){
-        return _.map(rows,'number')
-        // _.pluck(rows, 'name');
-    })
-    .then(function(numbers){
-        // return knex.insert({number: numbers}).into('city')
-        //knex.map(function(number){})
-        //console.log("The numbers ",numbers);
-        numbers.map(num => {
-            // console.log("The num is ",num);
-            return knex.insert({number:num,city:req.body.city,lat:req.body.lat,longt:
-            req.body.longt},'id').into('city')
-            .catch(function(error){
-                console.error(error);
-            })
-        });
-    })
-    .then(function(id){
-        console.log('Inserted ids ' + id);
-        res.send("Successfully inserted City!!!Bravo Joji!!!!")
-    })
-    //})
-    .catch(function(error){
-        console.error(error);
-    });
-
-});
+//
+// router.put("/citiesUpdate/:bookTitle/:cityName",function(req,res,next){
+//
+//      knex.select('number')
+//     .from('book')
+//     .where({title: req.params.bookTitle})
+//     .then(function(rows){
+//         return _.map(rows,'number')
+//     })
+//     .then(function(numbers){
+//         numbers.map(num => {
+//             // return knex.update({city:req.param.cityName})
+//             return  knex('city')
+//             .where({number: num})
+//             .update({city: req.params.cityName})
+//              .then(function(){
+//                 res.send("Successfully updated City!!!Bravo Joji!!!!")
+//             })
+//             .catch(function(error){
+//                 console.error(error);
+//             })
+//         });
+//
+//     })
+//     .catch(function(error){
+//         console.error(error);
+//         res.send(err);
+//     });
+//
+// });
+//
+// router.delete("/citiesDelete/:bookAuthor",function(req,res,next){
+//      knex.select('number')
+//     .from('book')
+//     .where({author: req.params.bookAuthor})
+//      .then(function(rows){
+//          return _.map(rows,'number')
+//          // _.pluck(rows, 'name');
+//      })
+//     .then(function(rows){
+//        // res.json("Book's Author Updated!!!");
+//          console.log('The rows are ',rows);
+//          rows.map(row => {
+//           //   console.log("The num is ",row);
+//              return knex('city').where({number:row}).del()
+//              .catch(function(error){
+//                  console.error(error);
+//              })
+//          });
+//          res.send("Successfully deleted!!!Bravo Joji!!!!")
+//     })
+//     .catch(function(error){
+//         console.error(error);
+//         res.send(err);
+//     });
+//
+// });
+//
+// router.post("/bookInput/:bookAuthor/:cityName",function(req,res,next){
+//
+//     knex.select('number')
+//     .from('book')
+//     .where({author: req.params.bookAuthor})
+//     .andWhere('number' , '<' , 1000)
+//     .then(function(rows){
+//         return _.map(rows,'number')
+//         // _.pluck(rows, 'name');
+//     })
+//     .then(function(numbers){
+//         // return knex.insert({number: numbers}).into('city')
+//         //knex.map(function(number){})
+//         //console.log("The numbers ",numbers);
+//         numbers.map(num => {
+//             console.log("The num is ",num);
+//             return knex.insert({number:num,city:req.params.cityName},'id').into('city')
+//             .catch(function(error){
+//                 console.error(error);
+//             })
+//         });
+//     })
+//     .then(function(id){
+//         console.log('Inserted ids ' + id);
+//         res.send("Successfully inserted!!!Bravo Joji!!!!")
+//     })
+//     //})
+//     .catch(function(error){
+//         console.error(error);
+//     });
+//
+// });
+//
+// router.post("/cityInputByBookTitle/:bookTitle",function(req,res,next){
+//
+//     knex.select('number')
+//     .from('book')
+//     .where({title: req.params.bookTitle})
+//     .then(function(rows){
+//         return _.map(rows,'number')
+//         // _.pluck(rows, 'name');
+//     })
+//     .then(function(numbers){
+//         // return knex.insert({number: numbers}).into('city')
+//         //knex.map(function(number){})
+//         //console.log("The numbers ",numbers);
+//         numbers.map(num => {
+//            // console.log("The num is ",num);
+//             return knex.insert({number:num,city:req.body.city,lat:req.body.lat,longt:
+//             req.body.longt},'id').into('city')
+//             .catch(function(error){
+//                 console.error(error);
+//             })
+//         });
+//     })
+//     .then(function(id){
+//         console.log('Inserted ids ' + id);
+//         res.send("Successfully inserted City!!!Bravo Joji!!!!")
+//     })
+//     //})
+//     .catch(function(error){
+//         console.error(error);
+//     });
+//
+// });
+//
+// router.post("/cityInputByBookAuthor/:bookAuthor",function(req,res,next){
+//
+//     knex.select('number')
+//     .from('book')
+//     .where({author: req.params.bookAuthor})
+//     .then(function(rows){
+//         return _.map(rows,'number')
+//         // _.pluck(rows, 'name');
+//     })
+//     .then(function(numbers){
+//         // return knex.insert({number: numbers}).into('city')
+//         //knex.map(function(number){})
+//         //console.log("The numbers ",numbers);
+//         numbers.map(num => {
+//             // console.log("The num is ",num);
+//             return knex.insert({number:num,city:req.body.city,lat:req.body.lat,longt:
+//             req.body.longt},'id').into('city')
+//             .catch(function(error){
+//                 console.error(error);
+//             })
+//         });
+//     })
+//     .then(function(id){
+//         console.log('Inserted ids ' + id);
+//         res.send("Successfully inserted City!!!Bravo Joji!!!!")
+//     })
+//     //})
+//     .catch(function(error){
+//         console.error(error);
+//     });
+//
+// });
 
 router.post("/bookPost", function(req,res,next){
 //console.log('The body is ',req.body);
