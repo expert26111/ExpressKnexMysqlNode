@@ -97,6 +97,7 @@ router.use("/book/:id",function(req,res,next){
     if(req.params.id == 0) {
         res.json({"message" : "You must pass ID other than 0"});
     }
+
     else next();
 });
 
@@ -389,39 +390,39 @@ router.post("/bookPost", function(req,res,next){
 
 
 
-router.post("/cityInput/:bookAuthor/:cityName",function(req,res,next){
-
-     knex.select('number')
-     .from('book')
-     .where({author: req.params.bookAuthor})
-     .andWhere('number' , '<' , 1000)
-     .then(function(rows){
-         return _.map(rows,'number')
-        // _.pluck(rows, 'name');
-     })
-      .then(function(numbers){
-         // return knex.insert({number: numbers}).into('city')
-         //knex.map(function(number){})
-         console.log("The numbers ",numbers);
-         numbers.map(num => {
-             console.log("The num is ",num);
-            return knex.insert({number:num,city:req.params.cityName},'id').into('city')
-             .catch(function(error){
-                 console.error(error);
-            })
-         });
-
-       })
-         .then(function(id){
-             console.log('Inserted ids ' + id);
-           res.send("Successfully inserted!!!Bravo Joji!!!!")
-         })
-      //})
-       .catch(function(error){
-           console.error(error);
-       });
-
-});
+// router.post("/cityInput/:bookAuthor/:cityName",function(req,res,next){
+//
+//      knex.select('number')
+//      .from('book')
+//      .where({author: req.params.bookAuthor})
+//      .andWhere('number' , '<' , 1000)
+//      .then(function(rows){
+//          return _.map(rows,'number')
+//         // _.pluck(rows, 'name');
+//      })
+//       .then(function(numbers){
+//          // return knex.insert({number: numbers}).into('city')
+//          //knex.map(function(number){})
+//          console.log("The numbers ",numbers);
+//          numbers.map(num => {
+//              console.log("The num is ",num);
+//             return knex.insert({number:num,city:req.params.cityName},'id').into('city')
+//              .catch(function(error){
+//                  console.error(error);
+//             })
+//          });
+//
+//        })
+//          .then(function(id){
+//              console.log('Inserted ids ' + id);
+//            res.send("Successfully inserted!!!Bravo Joji!!!!")
+//          })
+//       //})
+//        .catch(function(error){
+//            console.error(error);
+//        });
+//
+// });
 
 
 
