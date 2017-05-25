@@ -526,7 +526,9 @@ router.use(function(err, req, res, next) {
 router.use(function(req, res) { var time = Date.now() - req.start; });
 app.use(function(req, res) { var time = Date.now() - req.start; });
 
-var server = app.listen(port, function () {
-    var port = server.address().port;
-    console.log('Magic happens on port ' + port);
-  });
+// var server = app.listen(port, function () {
+//     var port = server.address().port;
+//     console.log('Magic happens on port ' + port);
+//   });
+
+module.exports = app;

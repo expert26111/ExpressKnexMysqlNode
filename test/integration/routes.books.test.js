@@ -8,6 +8,9 @@ chai.use(chaiHttp);
 const server = require('../../src/server/app');
 const knex = require('../../src/server/db/knex');
 
+chai.use(chaiHttp);
+
+
 describe('routes : books', () => {
     beforeEach((done) => {
                 knex.seed.run()
@@ -15,4 +18,10 @@ describe('routes : books', () => {
                     done();
                 });
     });
+
+
+
+
+
+
 });

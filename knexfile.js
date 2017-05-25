@@ -88,12 +88,29 @@ module.exports = {
             password: 'root',
             database: 'book_real'
         },
+        migrations: {
+            directory: __dirname + '/migrations'
+        },
         seeds: {
             directory: __dirname + '/server/db/seeds'
         },
         pool: {
             min: 0,
             max: 10
+        }
+    },
+
+    production: {
+        client: 'mysql',
+        connection: {
+            host : '188.226.149.201',
+            user:     'root',
+            password: 'root',
+            database: 'book_real'
+        },
+
+        seeds: {
+            directory: __dirname + '/server/db/seeds'
         }
     }
 
