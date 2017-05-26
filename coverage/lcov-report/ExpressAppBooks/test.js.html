@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ExpressAppBooks\test.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">ExpressAppBooks/</a> test.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.76% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>72/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>28/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.76% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>72/87</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">process.env.NODE_ENV='test';
+&nbsp;
+const chai=require('chai');
+const should=chai.should();
+const chaiHttp=require('chai-http');
+chai.use(chaiHttp);
+const server = require('./app');
+const app = require('./app');
+const knex = require('./server/db/knex');
+var queries = require('./server/db/queries');
+chai.use(chaiHttp);
+&nbsp;
+describe('API Routes', function() {
+&nbsp;
+&nbsp;
+&nbsp;
+    describe('testing queries.js file ', function() {
+&nbsp;
+&nbsp;
+        it('should post correctly a book to the db', function(done) {
+            queries.postBook("Great Book","Yoana and Manish")
+            .then(function(data){
+                console.log("The data is " , data);
+                data.should.have.property('message');
+<span class="cstat-no" title="statement not covered" >                data.message.should.equal('Book is posted !!!');</span>
+<span class="cstat-no" title="statement not covered" >                data.should.have.property('id');</span>
+<span class="cstat-no" title="statement not covered" >                data.id.should.be.a('array');</span>
+<span class="cstat-no" title="statement not covered" >                data.id.length.should.equal(1);</span>
+            })
+            .catch(function(error){
+&nbsp;
+            })
+            done();
+        });
+&nbsp;
+        it('should get correctly a book from the db with id = 2', function(done) {
+            queries.getBookbyId(2)
+            .then(function(data){
+               // console.log("The data is " , data);
+                res.should.be.json; // jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                data.should.have.property('book');</span>
+<span class="cstat-no" title="statement not covered" >                data.book.should.be.a('array');</span>
+<span class="cstat-no" title="statement not covered" >                data.book.length.should.equal(1);</span>
+<span class="cstat-no" title="statement not covered" >                data.book[0].number.should.equal(2);</span>
+<span class="cstat-no" title="statement not covered" >                data.book[0].title.should.equal("Yoana's city");</span>
+<span class="cstat-no" title="statement not covered" >                data.book[0].author.should.equal("Yoana Dandarova");</span>
+            })
+            .catch(function(error){
+&nbsp;
+            })
+            done();
+        });
+&nbsp;
+        it('should delete a book with an author "Manish TheHacker" ', function(done) {
+            queries.deleteByAuthor("Manish TheHacker")
+            .then(function(){
+                res.should.have.status(204);
+            })
+            .catch(function(error){
+&nbsp;
+            })
+            done();
+        });
+&nbsp;
+        it('should update a book with an title "Yoana\'s adventures" to have author Manish Sreshta ', function(done) {
+            queries.updateBook("Yoana's adventures")
+            .then(function(){
+                res.should.have.status(200);
+<span class="cstat-no" title="statement not covered" >                res.should.be.json; </span>// jshint ignore:line
+<span class="cstat-no" title="statement not covered" >                res.body.should.have.property('message');</span>
+<span class="cstat-no" title="statement not covered" >                res.body.message.should.equal('Book\'s Author Updated!!!');</span>
+<span class="cstat-no" title="statement not covered" >                res.body.should.have.property('id');</span>
+<span class="cstat-no" title="statement not covered" >                res.body.id.should.equal(1);</span>
+            })
+            .catch(function(error){
+&nbsp;
+            })
+            done();
+        });
+&nbsp;
+    });
+&nbsp;
+&nbsp;
+    describe('testing get methods ', function() {
+        it('returns simple route message Hello World ', function(done) {
+            chai.request(server)
+            .get('/api')
+            .end(function(err, res) {
+                res.should.be.json; // jshint ignore:line
+                res.body.should.have.property('message');
+                res.body.message.should.equal('Hello World');
+                done();
+            });
+        });
+&nbsp;
+&nbsp;
+        it('get book by id', function(done) {
+            chai.request(server)
+            .get('/api/book/'+2)
+            .end(function(err, res) {
+              //  console.log("the res is ",res);
+                res.should.be.json; // jshint ignore:line
+                res.body.should.have.property('book');
+                res.body.book.should.be.a('array');
+                res.body.book.length.should.equal(1);
+                res.body.book[0].number.should.equal(2);
+                res.body.book[0].title.should.equal("Yoana's city");
+                res.body.book[0].author.should.equal("Yoana Dandarova");
+                done();
+            });
+        });
+&nbsp;
+&nbsp;
+    });
+&nbsp;
+    describe('DELETE  ', function() {
+        it('delete a book by author', function(done) {
+            chai.request(server)
+            .delete('/api/bookDelete/'+"Yoana Blue")
+&nbsp;
+            .end(function(err, res) {
+                res.should.have.status(204);
+                done();
+            });
+        });
+    });
+&nbsp;
+&nbsp;
+    describe('PUT  ', function() {
+        it('Update a book auhtor to be "Great staff" by giving book title ', function(done) {
+            chai.request(server)
+            .put('/api/bookUpdate/'+"Yoana's adventures")
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.json; // jshint ignore:line
+                res.body.should.have.property('message');
+                res.body.message.should.equal('Book\'s Author Updated!!!');
+                res.body.should.have.property('id');
+                res.body.id.should.equal(1);
+                done();
+            });
+        });
+    });
+&nbsp;
+&nbsp;
+    describe('POST  ', function() {
+        it('Post a book', function(done) {
+            chai.request(server)
+            .post('/api/bookPost')
+            .send({
+                title: 'Great adventures of testing',
+                author : 'Yoana and Manish',
+            })
+            .end(function(err, res) {
+                res.should.have.status(200);
+                res.should.be.json; // jshint ignore:line
+                res.body.should.have.property('message');
+                res.body.message.should.equal('Book is posted !!!');
+                res.body.should.have.property('id');
+                res.body.id.should.be.a('array');
+                res.body.id.length.should.equal(1);
+               // res.body.id[0].should.equal(227);
+                done();
+            });
+        });
+    });
+&nbsp;
+});
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri May 26 2017 16:16:18 GMT+0200 (Romance Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -2,9 +2,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
-// var Promise = require('promise');
-//var expressPromiseRouter = require("express-promise-router");
 var router = express.Router();
 app.use(function(req, res, next) { req.start = Date.now(); next(); });
 router.use(function(req, res, next) { req.start = Date.now(); next(); });
@@ -13,7 +10,7 @@ var responseTime = require('response-time')
 app.use(responseTime());
 router.use(responseTime());
 var StatsD = require('node-statsd')
-var stats = new StatsD()
+var stats = new StatsD();
 stats.socket.on('error', function (error) {
     console.error(error.stack)
 })
@@ -22,6 +19,7 @@ process.env.NODE_ENV = 'test';
 
 
 var knex = require('./server/db/knex');
+var queries = require('./server/db/queries');
 //app.use(bodyParser());
 app.use(bodyParser.json());
 //router.use(bodyParser());
@@ -83,7 +81,8 @@ router.get("/",function(req,res,next){
 
 router.get("/book/:id",function(req,res,next){
 
-    knex('book').where('number', req.params.id).select()
+   // knex('book').where('number', req.params.id).select()
+    queries.getBookbyId(req.params.id)
     .then(function(book) {
         //console.log(book);
         res.status(200).json({"book" : book});
@@ -93,14 +92,24 @@ router.get("/book/:id",function(req,res,next){
     });
 });
 
+router.delete("/bookDelete/:bookAuthor",function(req,res,next){
+    queries.deleteByAuthor(req.params.bookAuthor)
+    .then(function(data){
+         res.status(204).json({message : "Successfully deleted!!!Bravo !!!!", id : data})
+    })
+    .catch(function(error){
+        console.error(error);
+        res.send(err);
+    });
 
+});
 
 router.put("/bookUpdate/:bookTitle",function(req,res,next){
-     knex('book')
-    .where({title: req.params.bookTitle})
-    .update({author: 'Yoana Georgieva'})
-    .then(function(){
-       res.json("Book's Author Updated!!!");
+
+    queries.updateBook( req.params.bookTitle)
+    .update({author: 'Manish Sreshta'})
+    .then(function(data){
+       res.json({message : "Book's Author Updated!!!", id: data});
     })
     .catch(function(error){
         console.error(error);
@@ -114,8 +123,9 @@ router.put("/bookUpdate/:bookTitle",function(req,res,next){
 
 router.post("/bookPost", function(req,res,next){
 //console.log('The body is ',req.body);
-   // var title = req.body.;
-    knex('books').returning(['number']).insert({title: req.body.title, author:req.body.author})
+   // var title = req.body.;knex('books').returning(['number']).insert({title: req.body.title, author:req.body.author})
+    queries.postBook(req.body.title,req.body.author)
+    //queries.getAll()
     .then(function(data){
         res.status(200).json({message : "Book is posted !!!", id : data});
     })
@@ -155,10 +165,5 @@ router.use(function(err, req, res, next) {
         message: err.message
     });
 });
-
-router.use(function(req, res) { var time = Date.now() - req.start; });
-app.use(function(req, res) { var time = Date.now() - req.start; });
-
-
 
 module.exports = app;
