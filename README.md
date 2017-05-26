@@ -7,12 +7,20 @@
 
 [Google Docs mirror of the report](https://goo.gl/ZPraRH)
 
-Developed by : Group Duo
-Yoana Dandarova (cph-)
+
+----------
+
+
+**Developed by** : Group Duo
+Yoana Dandarova (cph-yd44)
 Manish Shrestha (cph-ms659)
 
 Top-up Bachelor's Degree 1st Semester.
 Copenhagen Business Academy, Campus Lyngby
+
+
+----------
+
 
 For the Testing aspect of the project, we used Mocha, Chai, Knex, Travis and Istanbul.
 
