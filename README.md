@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/expert26111/ExpressKnexMysqlNode.svg?branch=master)](https://travis-ci.org/expert26111/ExpressKnexMysqlNode)
 
-**This is a Node.js app with Express Framework and AngularJS and MySQL.**
+**This is a Node.js app with Express Framework, AngularJS and MySQL.**
 
 **For the project report, follow this link: [Report/Reflection](https://github.com/expert26111/ExpressKnexMysqlNode/blob/master/Reflection.pdf)**
 -----------------------------------------
